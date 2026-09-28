@@ -1,23 +1,8 @@
-# Frontend Mentor - Password generator app solution
+# Frontend Mentor - Password Generator App
 
-This is a solution to the [Password generator app challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/password-generator-app-Mr8CLycqjh). Frontend Mentor challenges help you improve your coding skills by building realistic projects. 
+This is my solution to the Password Generator App challenge on Frontend Mentor.
 
-## Table of contents
-
-- [Overview](#overview)
-  - [The challenge](#the-challenge)
-  - [Screenshot](#screenshot)
-  - [Links](#links)
-- [My process](#my-process)
-  - [Built with](#built-with)
-  - [What I learned](#what-i-learned)
-  - [Continued development](#continued-development)
-  - [Useful resources](#useful-resources)
-  - [AI Collaboration](#ai-collaboration)
-- [Author](#author)
-- [Acknowledgments](#acknowledgments)
-
-**Note: Delete this note and update the table of contents based on what sections you keep.**
+The goal of this project was to build a responsive password generator that allows users to customize their password and see its strength.
 
 ## Overview
 
@@ -25,28 +10,22 @@ This is a solution to the [Password generator app challenge on Frontend Mentor](
 
 Users should be able to:
 
-- Generate a password based on the selected inclusion options
-- Copy the generated password to the computer's clipboard
-- See a strength rating for their generated password
-- View the optimal layout for the interface depending on their device's screen size
-- See hover and focus states for all interactive elements on the page
+- Generate a password based on selected character options
+- Choose the password length using a range slider
+- Include uppercase letters, lowercase letters, numbers, and symbols
+- Copy the generated password to the clipboard
+- See a strength rating for the generated password
+- View the optimal layout depending on their device's screen size
+- See hover and focus states for interactive elements
 
 ### Screenshot
 
-![](./screenshot.jpg)
-
-Add a screenshot of your solution. The easiest way to do this is to use Firefox to view your project, right-click the page and select "Take a Screenshot". You can choose either a full-height screenshot or a cropped one based on how long the page is. If it's very long, it might be best to crop it.
-
-Alternatively, you can use a tool like [FireShot](https://getfireshot.com/) to take the screenshot. FireShot has a free option, so you don't need to purchase it. 
-
-Then crop/optimize/edit your image however you like, add it to your project, and update the file path in the image above.
-
-**Note: Delete this note and the paragraphs above when you add your screenshot. If you prefer not to add a screenshot, feel free to remove this entire section.**
+![Password Generator App](./starter-code/assets/images/screenshot.jpg)
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Solution URL: Add your Frontend Mentor solution URL here
+- Live Site URL: Add your live site URL here
 
 ## My process
 
@@ -55,71 +34,100 @@ Then crop/optimize/edit your image however you like, add it to your project, and
 - Semantic HTML5 markup
 - CSS custom properties
 - Flexbox
-- CSS Grid
 - Mobile-first workflow
-- [React](https://reactjs.org/) - JS library
-- [Next.js](https://nextjs.org/) - React framework
-- [Styled Components](https://styled-components.com/) - For styles
-
-**Note: These are just examples. Delete this note and replace the list above with your own choices**
+- Responsive design
+- Vanilla JavaScript
+- Clipboard API
+- Custom range slider and checkboxes
+- JetBrains Mono local font
 
 ### What I learned
 
-Use this section to recap over some of your major learnings while working through this project. Writing these out and providing code samples of areas you want to highlight is a great way to reinforce your own knowledge.
+This project helped me practice working with JavaScript and DOM manipulation.
 
-To see how you can add code snippets, see below:
+I learned how to read values from form controls and use them to generate a password:
 
-```html
-<h1>Some HTML code I'm proud of</h1>
-```
-```css
-.proud-of-this-css {
-  color: papayawhip;
-}
-```
 ```js
-const proudOfThisFunc = () => {
-  console.log('🎉')
+if (uppercaseCheckbox.checked) {
+    availableCharacters += uppercaseChars;
+
+    requiredCharacters.push(
+        getRandomCharacter(uppercaseChars)
+    );
 }
 ```
 
-If you want more help with writing markdown, we'd recommend checking out [The Markdown Guide](https://www.markdownguide.org/) to learn more.
+I also practiced generating random values:
 
-**Note: Delete this note and the content within this section and replace with your own learnings.**
+```js
+function getRandomCharacter(characters) {
+    const randomIndex = Math.floor(
+        Math.random() * characters.length
+    );
+
+    return characters[randomIndex];
+}
+```
+
+Another useful concept was shuffling the generated password so that the required character types do not always appear in the same order:
+
+```js
+function shufflePassword(password) {
+    const characters = password.split("");
+
+    for (let i = characters.length - 1; i > 0; i--) {
+        const randomIndex = Math.floor(
+            Math.random() * (i + 1)
+        );
+
+        [characters[i], characters[randomIndex]] =
+            [characters[randomIndex], characters[i]];
+    }
+
+    return characters.join("");
+}
+```
+
+I also learned how to copy text to the clipboard using the Clipboard API:
+
+```js
+await navigator.clipboard.writeText(password);
+```
+
+This project also gave me more practice with event listeners, arrays, loops, functions, conditional logic, CSS custom properties, and responsive layouts.
 
 ### Continued development
 
-Use this section to outline areas that you want to continue focusing on in future projects. These could be concepts you're still not completely comfortable with or techniques you found useful that you want to refine and perfect.
+In future projects, I want to continue improving my JavaScript fundamentals, especially:
 
-**Note: Delete this note and the content within this section and replace with your own plans for continued development.**
+- DOM manipulation
+- Functions
+- Arrays and loops
+- Event handling
+- Form validation
+- Writing cleaner and more reusable code
+- Accessibility
+- Responsive CSS
 
-### Useful resources
-
-- [Example resource 1](https://www.example.com) - This helped me for XYZ reason. I really liked this pattern and will use it going forward.
-- [Example resource 2](https://www.example.com) - This is an amazing article which helped me finally understand XYZ. I'd recommend it to anyone still learning this concept.
-
-**Note: Delete this note and replace the list above with resources that helped you during the challenge. These could come in handy for anyone viewing your solution or for yourself when you look back on this project in the future.**
+I also want to become more comfortable building functionality from scratch without relying on frameworks.
 
 ### AI Collaboration
 
-Describe how you used AI tools (if any) during this project. This helps demonstrate your ability to work effectively with AI assistants.
+I used ChatGPT as a learning and debugging assistant during this project.
 
-- What tools did you use (e.g., ChatGPT, Claude, GitHub Copilot)?
-- How did you use them (e.g., debugging, generating boilerplate, brainstorming solutions)?
-- What worked well? What didn't?
+AI helped me:
 
-**Note: Delete this note and the content above if you didn't use AI, or replace with your own experience.**
+- Understand how to structure the JavaScript
+- Debug issues in HTML, CSS, and JavaScript
+- Understand relative file paths
+- Build the password generation logic step by step
+- Implement the password strength indicator
+- Implement clipboard functionality
+- Improve the custom slider and checkbox styling
+
+Rather than using a framework or external library, the final functionality was implemented with vanilla JavaScript.
 
 ## Author
 
-- Website - [Add your name here](https://www.your-site.com)
-- Frontend Mentor - [@yourusername](https://www.frontendmentor.io/profile/yourusername)
-- Twitter - [@yourusername](https://www.twitter.com/yourusername)
-
-**Note: Delete this note and add/remove/edit lines above based on what links you'd like to share.**
-
-## Acknowledgments
-
-This is where you can give a hat tip to anyone who helped you out on this project. Perhaps you worked in a team or got some inspiration from someone else's solution. This is the perfect place to give them some credit.
-
-**Note: Delete this note and edit this section's content as necessary. If you completed this challenge by yourself, feel free to delete this section entirely.**
+- Frontend Mentor - [@doomyhub229](https://www.frontendmentor.io/profile/doomyhub229)
+- GitHub - [@doomyhub229](https://github.com/doomyhub229)
