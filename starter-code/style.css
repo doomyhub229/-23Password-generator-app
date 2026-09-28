@@ -1,0 +1,512 @@
+@font-face {
+    font-family: "JetBrains Mono";
+    src: url("./assets/fonts/JetBrainsMono-VariableFont_wght.ttf") format("truetype");
+    font-weight: 100 800;
+    font-style: normal;
+    font-display: swap;
+}
+
+:root {
+    --grey-950: #08070b;
+    --grey-900: #14131b;
+    --grey-850: #18171f;
+    --grey-800: #24232c;
+    --grey-700: #54535b;
+    --grey-600: #817d92;
+    --grey-200: #e6e5ea;
+
+    --green-200: #a4ffaf;
+
+    --yellow-300: #f8cd65;
+    --orange-400: #fb7c58;
+    --red-500: #f64a4a;
+
+    --white: #ffffff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body,
+button,
+input {
+    font-family: "JetBrains Mono", monospace;
+}
+
+body {
+    min-height: 100vh;
+
+    background-color: var(--grey-950);
+    color: var(--grey-200);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 1rem;
+}
+
+button,
+input {
+    font: inherit;
+}
+
+/* Screen reader only */
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+
+/* =========================
+   PASSWORD GENERATOR
+========================= */
+
+.password-generator {
+    width: 100%;
+    max-width: 540px;
+}
+
+.password-generator h1 {
+    margin-bottom: 1rem;
+
+    color: var(--grey-600);
+
+    font-size: 1rem;
+    line-height: 1.3;
+    text-align: center;
+}
+
+
+/* =========================
+   PASSWORD OUTPUT
+========================= */
+
+.password-output {
+    min-height: 64px;
+
+    background-color: var(--grey-800);
+
+    padding: 1rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 1rem;
+}
+
+.password-output output {
+    min-width: 0;
+
+    font-size: 1.5rem;
+    font-weight: 700;
+
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.copy-button {
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    background: transparent;
+    border: 0;
+
+    color: var(--green-200);
+
+    cursor: pointer;
+}
+
+.copy-button img {
+    width: 18px;
+}
+
+.copy-message {
+    display: none;
+
+    color: var(--green-200);
+
+    font-size: 0.75rem;
+    text-transform: uppercase;
+}
+
+
+/* =========================
+   CONTROLS
+========================= */
+
+.generator-controls {
+    margin-top: 1rem;
+    padding: 1rem;
+
+    background-color: var(--grey-800);
+}
+
+
+/* Character length */
+
+.length-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.length-header label {
+    font-size: 1rem;
+}
+
+#length-value {
+    color: var(--green-200);
+
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+
+/* Range */
+
+#character-length {
+    appearance: none;
+
+    width: 100%;
+    height: 8px;
+
+    margin-top: 1.5rem;
+
+    background: linear-gradient(
+        to right,
+        var(--green-200) 50%,
+        var(--grey-950) 50%
+    );
+
+    cursor: pointer;
+}
+
+#character-length::-webkit-slider-thumb {
+    appearance: none;
+
+    width: 28px;
+    height: 28px;
+
+    background-color: var(--grey-200);
+    border: 2px solid var(--grey-200);
+    border-radius: 50%;
+
+    cursor: pointer;
+}
+
+#character-length::-webkit-slider-thumb:hover {
+    background-color: var(--grey-950);
+    border-color: var(--green-200);
+}
+
+#character-length::-moz-range-thumb {
+    width: 24px;
+    height: 24px;
+
+    background-color: var(--grey-200);
+    border: 2px solid var(--grey-200);
+    border-radius: 50%;
+
+    cursor: pointer;
+}
+
+#character-length::-moz-range-thumb:hover {
+    background-color: var(--grey-950);
+    border-color: var(--green-200);
+}
+
+
+/* =========================
+   CHECKBOXES
+========================= */
+
+.character-options {
+    margin-top: 2rem;
+
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    border: 0;
+}
+
+.character-options label {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+
+    font-size: 1rem;
+
+    cursor: pointer;
+}
+
+.character-options input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+
+    flex-shrink: 0;
+
+    accent-color: var(--green-200);
+
+    cursor: pointer;
+}
+
+
+/* =========================
+   STRENGTH
+========================= */
+
+.strength {
+    margin-top: 2rem;
+    padding: 1rem;
+
+    min-height: 56px;
+
+    background-color: var(--grey-850);
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 1rem;
+}
+
+.strength__title {
+    color: var(--grey-600);
+
+    font-size: 0.875rem;
+    text-transform: uppercase;
+}
+
+.strength__result {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+#strength-text {
+    font-size: 1rem;
+    text-transform: uppercase;
+}
+
+
+/* Strength bars */
+
+.strength__bars {
+    display: flex;
+    gap: 0.375rem;
+}
+
+.strength-bar {
+    display: block;
+
+    width: 10px;
+    height: 28px;
+
+    border: 2px solid var(--grey-200);
+}
+
+
+/* =========================
+   GENERATE BUTTON
+========================= */
+
+.generate-button {
+    width: 100%;
+
+    margin-top: 1rem;
+    padding: 1rem;
+
+    background-color: var(--green-200);
+    color: var(--grey-800);
+
+    border: 2px solid var(--green-200);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+
+    cursor: pointer;
+}
+
+.generate-button img {
+    width: 12px;
+}
+
+
+/* =========================
+   INTERACTIVE STATES
+========================= */
+
+.generate-button:hover,
+.generate-button:focus-visible {
+    background-color: transparent;
+    color: var(--green-200);
+}
+
+.copy-button:hover img,
+.copy-button:focus-visible img {
+    opacity: 0.7;
+}
+
+.strength-1 {
+    background-color: var(--red-500);
+    border-color: var(--red-500);
+}
+
+.strength-2 {
+    background-color: var(--orange-400);
+    border-color: var(--orange-400);
+}
+
+.strength-3 {
+    background-color: var(--yellow-300);
+    border-color: var(--yellow-300);
+}
+
+.strength-4 {
+    background-color: var(--green-200);
+    border-color: var(--green-200);
+}
+/* hover */
+
+button:focus-visible,
+input:focus-visible {
+    outline: 2px solid var(--green-200);
+    outline-offset: 4px;
+}
+
+.generate-button:hover,
+.generate-button:focus-visible {
+    background-color: transparent;
+    color: var(--green-200);
+}
+
+.generate-button:hover img,
+.generate-button:focus-visible img {
+    filter: brightness(0) saturate(100%) invert(92%);
+}
+
+.copy-button:hover,
+.copy-button:focus-visible {
+    color: var(--green-200);
+}
+
+.copy-button:hover img,
+.copy-button:focus-visible img {
+    opacity: 0.7;
+}
+
+/* =========================
+   DESKTOP
+========================= */
+
+@media (min-width: 600px) {
+
+    body {
+        padding: 2rem;
+    }
+
+    .password-generator h1 {
+        margin-bottom: 2rem;
+        font-size: 1.5rem;
+    }
+
+    .password-output {
+        min-height: 80px;
+        padding: 1.25rem 2rem;
+    }
+
+    .password-output output {
+        font-size: 2rem;
+    }
+
+    .copy-button img {
+        width: 21px;
+    }
+
+    .generator-controls {
+        margin-top: 1.5rem;
+        padding: 2rem;
+    }
+
+    .length-header label {
+        font-size: 1.125rem;
+    }
+
+    #length-value {
+        font-size: 2rem;
+    }
+
+    .character-options {
+        gap: 1.25rem;
+    }
+
+    .character-options label {
+        font-size: 1.125rem;
+    }
+
+    .strength {
+        min-height: 72px;
+        padding: 1.25rem 2rem;
+    }
+
+    .strength__title {
+        font-size: 1rem;
+    }
+
+    #strength-text {
+        font-size: 1.5rem;
+    }
+
+    .generate-button {
+        margin-top: 2rem;
+        padding: 1.25rem;
+        font-size: 1.125rem;
+    }
+
+    @media (max-width: 380px) {
+    .password-output output {
+        font-size: 1.25rem;
+    }
+
+    .generator-controls {
+        padding: 1rem;
+    }
+
+    .character-options label {
+        gap: 0.75rem;
+        font-size: 0.9rem;
+    }
+
+    .strength {
+        padding: 1rem;
+    }
+
+    #strength-text {
+        font-size: 0.9rem;
+    }
+}
+}

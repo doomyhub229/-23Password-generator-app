@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+
+  <link rel="stylesheet" href="./style.css">
+
+  <title>Frontend Mentor | Password generator app</title>
+</head>
+
+<body>
+
+  <main class="password-generator">
+
+    <h1>Password Generator</h1>
+
+    <!-- Generated password -->
+    <section class="password-output" aria-label="Generated password">
+      <output id="password">P4$5W0rD!</output>
+
+      <button class="copy-button" type="button" aria-label="Copy password">
+        <span class="copy-message">Copied</span>
+        <img src="./assets/images/icon-copy.svg" alt="" aria-hidden="true">
+      </button>
+    </section>
+
+
+    <!-- Generator controls -->
+    <section class="generator-controls">
+
+      <!-- Character length -->
+      <div class="length-control">
+
+        <div class="length-header">
+          <label for="character-length">Character Length</label>
+          <output id="length-value" for="character-length">10</output>
+        </div>
+
+        <input type="range" id="character-length" name="character-length" min="1" max="20" value="10">
+
+      </div>
+
+
+      <!-- Character options -->
+      <fieldset class="character-options">
+
+        <legend class="sr-only">
+          Characters to include
+        </legend>
+
+        <label>
+          <input type="checkbox" id="uppercase" name="uppercase" checked>
+          <span>Include Uppercase Letters</span>
+        </label>
+
+        <label>
+          <input type="checkbox" id="lowercase" name="lowercase" checked>
+          <span>Include Lowercase Letters</span>
+        </label>
+
+        <label>
+          <input type="checkbox" id="numbers" name="numbers" checked>
+          <span>Include Numbers</span>
+        </label>
+
+        <label>
+          <input type="checkbox" id="symbols" name="symbols">
+          <span>Include Symbols</span>
+        </label>
+
+      </fieldset>
+
+
+      <!-- Password strength -->
+      <div class="strength">
+
+        <span class="strength__title">
+          Strength
+        </span>
+
+        <div class="strength__result">
+
+          <span id="strength-text">
+            Medium
+          </span>
+
+          <div class="strength__bars" aria-hidden="true">
+            <span class="strength-bar"></span>
+            <span class="strength-bar"></span>
+            <span class="strength-bar"></span>
+            <span class="strength-bar"></span>
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- Generate -->
+      <button class="generate-button" type="button">
+        <span>Generate</span>
+
+        <img src="./assets/images/icon-arrow-right.svg" alt="" aria-hidden="true">
+      </button>
+
+    </section>
+
+  </main>
+
+  <script src="./script.js"></script>
+
+</body>
+
+</html>
